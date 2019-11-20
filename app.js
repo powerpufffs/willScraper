@@ -27,25 +27,21 @@ const csvWriter = createCsvWriter({
 
   $(resultsPerPage).each((i, section) => {
     $(section).each((i, el) => {
-      const financialData = $(el).find(`.fin-data`);
       const orgInfo = $(el)
         .find(`.org-info`)
         .text()
         .split("|");
 
+      const finValues = $(el).find(
+        `.financial-data.no-padding-left .fin-value`
+      );
+
       results.push({
         name: $(el)
           .find(`.search-org-name`)
           .text(),
-        totalRevenue: $(financialData)
-          .find(`> span:nth-child(2)`)
-          .text(),
-        grossReceipts: $(financialData)
-          .find(`> span:nth-child(4)`)
-          .text(),
-        assets: $(financialData)
-          .find(`> span:nth-child(6)`)
-          .text(),
+        grossReceipts: $(finValues[0]).text(),
+        assets: $(finValues[1]).text(),
         // url:
         // address: orgInfo[0].trim(),
         state: orgInfo[0].split(",")[1].trim(),
