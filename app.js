@@ -46,7 +46,7 @@ const csvWriter = createCsvWriter({
         // address: orgInfo[0].trim(),
         state: orgInfo[0].split(",")[1].trim(),
         city: orgInfo[0].split(",")[0].trim(),
-        EIN: orgInfo[1].trim()
+        EIN: orgInfo[1].trim().replace("EIN: ", "")
       });
     });
   });
